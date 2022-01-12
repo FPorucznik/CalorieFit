@@ -22,6 +22,10 @@ public class FoodEntity {
     private int mCalories;
 
     @NonNull
+    @ColumnInfo(name = "calorie_limit")
+    private int mCalorieLimit;
+
+    @NonNull
     @ColumnInfo(name = "photo_uri")
     private String mPhoto;
 
@@ -46,4 +50,6 @@ public class FoodEntity {
     public int getId() {
         return this.mId;
     }
+
+    public int getCalorieLimit() { return this.mCalorieLimit; }
 }

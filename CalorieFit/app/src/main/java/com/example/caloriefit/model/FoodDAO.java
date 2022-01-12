@@ -22,6 +22,9 @@ public interface FoodDAO {
     @Update
     void update(FoodEntity entity);
 
+    @Query("SELECT calorie_limit FROM food_table LIMIT 1")
+    LiveData<Integer> getCalorieLimit();
+
     @Query("SELECT * FROM food_table")
     LiveData<List<FoodEntity>> getAllFood();
 
