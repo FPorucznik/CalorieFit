@@ -8,7 +8,11 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "food_table")
 public class FoodEntity {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "id")
+    private int mId;
+
     @NonNull
     @ColumnInfo(name = "food_name")
     private String mName;
@@ -37,5 +41,9 @@ public class FoodEntity {
 
     public String getPhoto() {
         return this.mPhoto;
+    }
+
+    public int getId() {
+        return this.mId;
     }
 }
