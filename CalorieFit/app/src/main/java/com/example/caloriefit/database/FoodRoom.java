@@ -24,7 +24,7 @@ public abstract class FoodRoom  extends RoomDatabase {
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUM_OF_THREADS);
 
-    public FoodRoom getDatabase(final Context context){
+    public static FoodRoom getDatabase(final Context context){
         if(INSTANCE == null){
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(), FoodRoom.class, "food_database")
                     .build();
