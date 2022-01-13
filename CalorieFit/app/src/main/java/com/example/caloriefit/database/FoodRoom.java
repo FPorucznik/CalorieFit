@@ -2,9 +2,11 @@ package com.example.caloriefit.database;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.caloriefit.model.FoodDAO;
 import com.example.caloriefit.model.FoodEntity;
@@ -26,9 +28,29 @@ public abstract class FoodRoom  extends RoomDatabase {
 
     public static FoodRoom getDatabase(final Context context){
         if(INSTANCE == null){
-            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), FoodRoom.class, "food_database")
+            INSTANCE = Room
+                    .databaseBuilder(context.getApplicationContext(), FoodRoom.class, "food_database")
+                    .addCallback(sRoomDatabaseCallback)
                     .build();
         }
         return INSTANCE;
     }
+
+    private static final RoomDatabase.Callback sRoomDatabaseCallback =
+            new RoomDatabase.Callback(){
+                @Override
+                public void onCreate(@NonNull SupportSQLiteDatabase db){
+                    super.onCreate(db);
+
+                    databaseWriteExecutor.execute(() -> {
+                        FoodDAO dao = INSTANCE.foodDAO();
+                        dao.deleteAll();
+
+                        FoodEntity food = new FoodEntity("Chocolate", 450);
+                        dao.insert(food);
+                        food = new FoodEntity("Beef", 230);
+                        dao.insert(food);
+                    });
+                }
+            };
 }

@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/semestr5/app_project/CalorieFit/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/semestr5/app_project/CalorieFit/app/src/main/res/layout/activity_new_food.xml" value="0.33" />
+        <entry key="..\:/semestr5/app_project/CalorieFit/app/src/main/res/layout/food_activity.xml" value="0.1641337386018237" />
         <entry key="..\:/semestr5/app_project/CalorieFit/app/src/main/res/layout/food_view.xml" value="0.33" />
       </map>
     </option>
