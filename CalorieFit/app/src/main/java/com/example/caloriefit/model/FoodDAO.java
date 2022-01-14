@@ -2,6 +2,7 @@ package com.example.caloriefit.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -16,18 +17,18 @@ public interface FoodDAO {
     @Query("DELETE FROM food_table")
     void deleteAll();
 
-    @Query("DELETE FROM food_table WHERE id = :id")
-    void deleteFood(int id);
+    @Delete
+    void deleteFood(FoodEntity entity);
 
     @Update
     void update(FoodEntity entity);
+
+    @Query("UPDATE food_table SET calorie_limit = :limit")
+    void updateLimit(int limit);
 
     @Query("SELECT calorie_limit FROM food_table LIMIT 1")
     LiveData<Integer> getCalorieLimit();
 
     @Query("SELECT * FROM food_table")
     LiveData<List<FoodEntity>> getAllFood();
-
-    @Query("SELECT * FROM food_table WHERE id = :id")
-    LiveData<FoodEntity> getFood(int id);
 }

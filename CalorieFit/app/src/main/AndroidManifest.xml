@@ -13,6 +13,9 @@
             android:name=".view.NewFoodActivity"
             android:exported="false" />
         <activity
+            android:name=".view.EditFoodActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>

@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/save_food_btn"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="save">
+    </Button>
+
     <EditText
         android:id="@+id/food_edit_name"
         android:layout_width="300dp"

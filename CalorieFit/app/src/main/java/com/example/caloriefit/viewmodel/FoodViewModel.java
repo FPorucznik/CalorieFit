@@ -16,6 +16,7 @@ public class FoodViewModel extends AndroidViewModel {
     private final FoodRepository mRepository;
 
     private final LiveData<List<FoodEntity>> mAllFood;
+    private final LiveData<FoodEntity> mFood = null;
 
     public FoodViewModel(@NonNull Application application) {
         super(application);
@@ -27,4 +28,10 @@ public class FoodViewModel extends AndroidViewModel {
     public LiveData<List<FoodEntity>> getAllFood(){ return mAllFood; }
 
     public void insert(FoodEntity entity){ mRepository.insert(entity); }
+
+    public void deleteFood(FoodEntity entity) { mRepository.deleteFood(entity); }
+
+    public void update(FoodEntity entity) { mRepository.update(entity); }
+
+    public void updateLimit(int limit) { mRepository.updateLimit(limit); }
 }

@@ -51,8 +51,11 @@
 
         <ProgressBar
             android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="250dp"
             android:layout_height="20dp"
+            android:indeterminate="false"
+            android:progress="0"
             android:layout_gravity="left">
         </ProgressBar>
         <TextView

@@ -30,27 +30,8 @@ public abstract class FoodRoom  extends RoomDatabase {
         if(INSTANCE == null){
             INSTANCE = Room
                     .databaseBuilder(context.getApplicationContext(), FoodRoom.class, "food_database")
-                    .addCallback(sRoomDatabaseCallback)
                     .build();
         }
         return INSTANCE;
     }
-
-    private static final RoomDatabase.Callback sRoomDatabaseCallback =
-            new RoomDatabase.Callback(){
-                @Override
-                public void onCreate(@NonNull SupportSQLiteDatabase db){
-                    super.onCreate(db);
-
-                    databaseWriteExecutor.execute(() -> {
-                        FoodDAO dao = INSTANCE.foodDAO();
-                        dao.deleteAll();
-
-                        FoodEntity food = new FoodEntity("Chocolate", 450);
-                        dao.insert(food);
-                        food = new FoodEntity("Beef", 230);
-                        dao.insert(food);
-                    });
-                }
-            };
 }

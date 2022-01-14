@@ -58,4 +58,8 @@ public class FoodEntity {
     public void setCalorieLimit(int mCalorieLimit) { this.mCalorieLimit = mCalorieLimit; }
 
     public void setPhoto(String uri){ this.mPhoto = uri; }
+
+    public void setName(String name) { this.mName = name; }
+
+    public void setCalories(int calories){ this.mCalories = calories; }
 }

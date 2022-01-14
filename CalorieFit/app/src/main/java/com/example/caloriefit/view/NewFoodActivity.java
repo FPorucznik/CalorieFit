@@ -34,6 +34,11 @@ public class NewFoodActivity extends AppCompatActivity {
 
                 replyIntent.putExtra("name", foodName);
                 replyIntent.putExtra("calories", calories);
+
+                if(!MainActivity.viewModel.getAllFood().getValue().isEmpty()){
+                    MainActivity.viewModel.updateLimit(getIntent().getIntExtra("limit", 0));
+                }
+
                 setResult(RESULT_OK, replyIntent);
             }
             finish();
