@@ -29,10 +29,10 @@ public class FoodEntity {
     @ColumnInfo(name = "photo_uri")
     private String mPhoto;
 
-    public FoodEntity(@NonNull String name, @NonNull int calories){
+    public FoodEntity(@NonNull String name, @NonNull int calories, @NonNull String photo){
         this.mName = name;
         this.mCalories = calories;
-        this.mPhoto = "";
+        this.mPhoto = photo;
     }
 
     public String getName() {

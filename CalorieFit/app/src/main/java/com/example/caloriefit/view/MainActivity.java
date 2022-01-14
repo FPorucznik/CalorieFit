@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == NEW_FOOD_REQUEST_CODE && resultCode == RESULT_OK){
-            FoodEntity food = new FoodEntity(data.getStringExtra("name"), data.getIntExtra("calories", 0));
+            FoodEntity food = new FoodEntity(data.getStringExtra("name"), data.getIntExtra("calories", 0), data.getStringExtra("photo"));
             viewModel.insert(food);
             if(!viewModel.getAllFood().getValue().isEmpty()){
                 viewModel.updateLimit(viewModel.getAllFood().getValue().get(0).getCalorieLimit());
