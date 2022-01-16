@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.DigitsKeyListener;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
         calorieLimitText = findViewById(R.id.calorie_limit_text);
 
-
         final Observer<List<FoodEntity>> foodObserver = foodEntities -> {
             if(!viewModel.getAllFood().getValue().isEmpty()){
                 int sumOfCalories = 0;
+
                 for(FoodEntity entity : viewModel.getAllFood().getValue()){
                     sumOfCalories += entity.getCalories();
                 }
@@ -94,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
         addCalorieLimitBtn.setOnClickListener(v -> {
             if(calorieLimitEdit.getText().toString().trim().length() == 0){
                 Toast.makeText(this, "Wrong input", Toast.LENGTH_LONG).show();
+            }
+            else if(calorieLimitEdit.getText().toString().contains(".") || calorieLimitEdit.getText().toString().contains(",") || calorieLimitEdit.getText().toString().contains(" ") || calorieLimitEdit.getText().toString().contains("-")){
+                Toast.makeText(this, "Only integer values", Toast.LENGTH_LONG).show();
             }
             else{
                 int limit = Integer.parseInt(calorieLimitEdit.getText().toString());

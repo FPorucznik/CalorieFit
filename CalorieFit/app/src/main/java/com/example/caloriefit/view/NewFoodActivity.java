@@ -19,6 +19,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.caloriefit.R;
 import com.example.caloriefit.databinding.ActivityNewFoodBinding;
@@ -50,7 +51,6 @@ public class NewFoodActivity extends AppCompatActivity {
         binding = ActivityNewFoodBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        //setContentView(R.layout.activity_new_food);
 
         binding.addPhotoNewButton.setOnClickListener(v -> {
             activateCamera();
@@ -61,25 +61,30 @@ public class NewFoodActivity extends AppCompatActivity {
 
         final Button button = findViewById(R.id.add_food_new);
         button.setOnClickListener(v -> {
-            Intent replyIntent = new Intent();
-            if(TextUtils.isEmpty(addNewFoodName.getText()) || TextUtils.isEmpty(addNewCalories.getText())){
-                setResult(RESULT_CANCELED, replyIntent);
+            if(addNewCalories.getText().toString().contains(".") || addNewCalories.getText().toString().contains(",") || addNewCalories.getText().toString().contains(" ") || addNewCalories.getText().toString().contains("-")){
+                Toast.makeText(this, "Only integer values", Toast.LENGTH_LONG).show();
             }
             else{
-                String foodName = addNewFoodName.getText().toString();
-                int calories = Integer.parseInt(addNewCalories.getText().toString());
-
-                replyIntent.putExtra("name", foodName);
-                replyIntent.putExtra("calories", calories);
-                replyIntent.putExtra("photo", savePicturePath.toString());
-
-                if(!MainActivity.viewModel.getAllFood().getValue().isEmpty()){
-                    MainActivity.viewModel.updateLimit(getIntent().getIntExtra("limit", 0));
+                Intent replyIntent = new Intent();
+                if(TextUtils.isEmpty(addNewFoodName.getText()) || TextUtils.isEmpty(addNewCalories.getText())){
+                    setResult(RESULT_CANCELED, replyIntent);
                 }
+                else{
+                    String foodName = addNewFoodName.getText().toString();
+                    int calories = Integer.parseInt(addNewCalories.getText().toString());
 
-                setResult(RESULT_OK, replyIntent);
+                    replyIntent.putExtra("name", foodName);
+                    replyIntent.putExtra("calories", calories);
+                    replyIntent.putExtra("photo", savePicturePath.toString());
+
+                    if(!MainActivity.viewModel.getAllFood().getValue().isEmpty()){
+                        MainActivity.viewModel.updateLimit(getIntent().getIntExtra("limit", 0));
+                    }
+
+                    setResult(RESULT_OK, replyIntent);
+                }
+                finish();
             }
-            finish();
         });
     }
 

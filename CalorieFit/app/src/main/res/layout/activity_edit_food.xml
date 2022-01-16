@@ -30,6 +30,17 @@
         android:layout_marginBottom="20dp">
     </EditText>
 
+    <ImageButton
+        android:id="@+id/add_photo_button"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:src="@mipmap/ic_camera"
+        android:padding="10sp"
+        android:layout_marginBottom="20dp">
+    </ImageButton>
+
     <ImageView
         android:id="@+id/food_image_view"
         android:layout_width="200dp"
@@ -38,16 +49,6 @@
         android:scaleType="centerCrop"
         android:layout_marginBottom="20dp">
     </ImageView>
-
-    <ImageButton
-        android:id="@+id/add_photo_button"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:background="@color/black"
-        android:padding="10sp"
-        android:layout_marginBottom="20dp">
-    </ImageButton>
 
     <Button
         android:id="@+id/food_delete_btn"
